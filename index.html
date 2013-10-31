@@ -10,6 +10,9 @@
     <script src="js/gps.js"></script>
     <script type="text/javascript">
     
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value
+    
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -18,6 +21,8 @@
     //
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
     }
     
     // onSuccess Geolocation
@@ -41,50 +46,75 @@
               'message: ' + error.message + '\n');
     }
     
-    $(function() {
-	    $("#get-loc").on("click", function() {
-        navigator.geolocation.getCurrentPosition(
-				function(position) {
-					$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
-				},
-				function() {
-					$('.location', this.el).html('Error');
-				});
-				return false;
-	    });
-	});
-	    
-	    var app = {
-		    
-		    showAlert: function (message, title) {
-			    if(navigator.notification) {
-				    navigator.notification.alert(message, null, title, 'OK');
-			    } else {
-				    alert(title ? (title + ": " + message) : message);
-			    }
-		    },
-		    
-		    addLocation: function(event) {
-				event.preventDefault();
-				console.log('get location');
-				navigator.geolocation.getCurrentPosition(
-					function(position) {
-						$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
-					},
-					function() {
-						alert('Error getting location');
-					});
-					return false;
-			},
-		    		    
-		    initialize: function() {
-			    var self = this;
-			    //self.showAlert('Initialize completed','Info');
-		
-		    }
-		    
-	    };
-	    app.initialize();
+    function onPhotoDataSuccess(imageData) {
+      // Uncomment to view the base64-encoded image data
+      // console.log(imageData);
+
+      // Get image handle
+      //
+      var smallImage = document.getElementById('smallImage');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoURISuccess(imageURI) {
+      // Uncomment to view the image file URI
+      // console.log(imageURI);
+
+      // Get image handle
+      //
+      var largeImage = document.getElementById('largeImage');
+
+      // Unhide image elements
+      //
+      largeImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      largeImage.src = imageURI;
+    }
+
+    // A button will call this function
+    //
+    function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
+    // A button will call this function
+    //
+    function capturePhotoEdit() {
+      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+        destinationType: destinationType.DATA_URL });
+    }
+
+    // A button will call this function
+    //
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+
+    // Called if something bad happens.
+    //
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
 	    
     </script>
     
@@ -130,18 +160,14 @@
     	<div data-role="content">
         <form>
 		    <ul data-role="listview" data-inset="true">
-		    	<li data-role="fieldcontain">
-		            <div class="ui-grid-c">
-					    <div class="ui-block-a"><a href="#" data-role="button">Generate #</a></div>
-					    <div class="ui-block-b"><input type="text" name="g1" id="g1" value="" data-clear-btn="true"></div>
-					    <div class="ui-block-c"><a href="#" id="get-loc" class="get-loc" data-role="button">Get Location</a></div>
-					    <div class="ui-block-d"><input type="text" name="location" id="location" value="" class="location" data-clear-btn="true"></div>
-					    <p id="geolocation">Finding geolocation...</p>
-					</div>
+		    	
+		        <li data-role="fieldcontain">
+		            <label for="name2">Generated Survey Id:</label>
+		            <h3 id="geolocation">Generating..</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
 		            <label for="name2">Survey Location:</label>
-		            <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
+		            <h3 id="geolocation">Finding geolocation...</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
 		            <label for="name2">Text Input:</label>
@@ -174,7 +200,7 @@
 		        </li>
 		        <li data-role="fieldcontain">
 		            <div class="ui-grid-a">
-					    <div class="ui-block-a"><a href="#" data-role="button">Camera</a></div>
+					    <div class="ui-block-a"><button id="camera" onclick="capturePhoto();">Camera</button></div>
 					    <div class="ui-block-b"><button data-theme="d">Video</button></div>
 					</div>   
 			    </li>
