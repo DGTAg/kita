@@ -6,7 +6,21 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-mobile.js"></script>
+    <script src="js/gps.js"></script>
     <script type="text/javascript">
+    
+    $(function() {
+	    $("#get-loc").on("click", function() {
+        navigator.geolocation.getCurrentPosition(
+				function(position) {
+					$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
+				},
+				function() {
+					alert('Error getting location');
+				});
+				return false;
+	    });
+	});
 	    
 	    var app = {
 		    
@@ -18,23 +32,23 @@
 			    }
 		    },
 		    
-		    getLocation: function(event) {
-			    event.preventDefault();
-			    console.log('get location');
-			    navigator.geolocation.getCurrentPosition(
-			    	function(position) {
-				    	$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
-			    	},
-			    	function() {
-				    	alert('Error getting location');
-			    	});
-			    	return false;
-		    }
-		    
+		    addLocation: function(event) {
+				event.preventDefault();
+				console.log('get location');
+				navigator.geolocation.getCurrentPosition(
+					function(position) {
+						$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
+					},
+					function() {
+						alert('Error getting location');
+					});
+					return false;
+			},
+		    		    
 		    initialize: function() {
 			    var self = this;
-			    self.showAlert('Initialize completed','Info');
-			    self.getLocation(this.el.on('click','.get-loc',this.get-loc);
+			    //self.showAlert('Initialize completed','Info');
+		
 		    }
 		    
 	    };
@@ -87,8 +101,8 @@
 		    	<li data-role="fieldcontain">
 		            <div class="ui-grid-c">
 					    <div class="ui-block-a"><a href="#" data-role="button">Generate #</a></div>
-					    <div class="ui-block-b"><input type="text" name="name2" id="name2" value="" data-clear-btn="true"></div>
-					    <div class="ui-block-c"><a href="#" class="get-loc" data-role="button">Get Location</a></div>
+					    <div class="ui-block-b"><input type="text" name="g1" id="g1" value="" data-clear-btn="true"></div>
+					    <div class="ui-block-c"><a href="#" id="get-loc" class="get-loc" data-role="button">Get Location</a></div>
 					    <div class="ui-block-d"><input type="text" name="location" id="location" value="" class="location" data-clear-btn="true"></div>
 					</div>
 		        </li>
