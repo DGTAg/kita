@@ -4,10 +4,42 @@
     <title>Mobile Research Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="cordova.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery-mobile.js"></script>
     <script src="js/gps.js"></script>
     <script type="text/javascript">
+    
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+    
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
     
     $(function() {
 	    $("#get-loc").on("click", function() {
@@ -16,7 +48,7 @@
 					$('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
 				},
 				function() {
-					alert('Error getting location');
+					$('.location', this.el).html('Error');
 				});
 				return false;
 	    });
@@ -104,6 +136,7 @@
 					    <div class="ui-block-b"><input type="text" name="g1" id="g1" value="" data-clear-btn="true"></div>
 					    <div class="ui-block-c"><a href="#" id="get-loc" class="get-loc" data-role="button">Get Location</a></div>
 					    <div class="ui-block-d"><input type="text" name="location" id="location" value="" class="location" data-clear-btn="true"></div>
+					    <p id="geolocation">Finding geolocation...</p>
 					</div>
 		        </li>
 		        <li data-role="fieldcontain">
