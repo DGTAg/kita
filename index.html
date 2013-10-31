@@ -114,6 +114,15 @@
     function onFail(message) {
       alert('Failed because: ' + message);
     }
+    
+    function createGuid()
+	{
+	    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+	        var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+	        return v.toString(16);
+	    });
+	}
+
 
 	    
     </script>
@@ -130,7 +139,7 @@
         <div data-role="content">
             <a href="#newForm" data-transition="flip" data-role="button">New Form</a>
             <a href="#" data-role="button">Statistic</a>
-            <a href="#" data-role="button">About</a>
+            <a href="about.html" data-rel="dialog" data-role="button">About</a>
         </div><!-- /content -->
  
         <div data-role="footer" data-theme="c">
@@ -162,8 +171,8 @@
 		    <ul data-role="listview" data-inset="true">
 		    	
 		        <li data-role="fieldcontain">
-		            <label for="name2">Generated Survey Id:</label>
-		            <h3 id="geolocation">Generating..</h3>		        
+		            <label for="guid">Generated Survey Id:</label>
+		            <h3 name="guid" id="guid">uhuhuh</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
 		            <label for="name2">Survey Location:</label>
@@ -199,6 +208,8 @@
 					</select>
 		        </li>
 		        <li data-role="fieldcontain">
+		        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />
 		            <div class="ui-grid-a">
 					    <div class="ui-block-a"><button id="camera" onclick="capturePhoto();">Camera</button></div>
 					    <div class="ui-block-b"><button data-theme="d">Video</button></div>
@@ -219,6 +230,12 @@
         </div><!-- /footer -->
     
     </div>
+    
+    <script type="text/javascript">
+    	var guid = createGuid();
+		var valGuid = document.getElementById('guid');
+		valGuid.innerHTML = 'eeeee';
+    </script>
     
 </body>
 </html>
