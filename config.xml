@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.bytecentrix.kita" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>KITA</name>
+<widget id="com.bytecentrix.mobile" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>BYTEcentrix</name>
     <description>
-        KITA mobile researchers tool
+        ByteCentrix mobile apps
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="ask@bytecentrix.com" href="http://bytecentrix.com">
         Bytecentrix Solutions
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />

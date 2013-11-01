@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Mobile Research Tool</title>
+    <title>ByteCentrix Mobile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/styles.css">
     <script src="cordova.js"></script>
@@ -88,7 +88,7 @@
     //
     function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
     }
 
@@ -139,17 +139,17 @@
     <div data-role="page" id="home">
  
         <div data-role="header" data-theme="b">
-            <h1>KITA research tool</h1>
+            <h1>Web Pantas</h1>
         </div><!-- /header -->
  
         <div data-role="content">
-            <a href="#newForm" onclick="genUID();" data-transition="flow" data-role="button">New Form</a>
+            <a href="#newForm" onclick="genUID();" data-transition="flow" data-role="button">Customer Request Form</a>
             <a href="#" data-role="button">Statistic</a>
             <a href="about.html" data-role="button" rel="external">About</a>
         </div><!-- /content -->
  
         <div data-role="footer" data-theme="c">
-            <h4>ByteCentrix mobile solution</h4>
+            <h4>ByteCentrix mobile solution 2013</h4>
         </div><!-- /footer -->
  
     </div>
@@ -168,7 +168,7 @@
     
     	<div data-role="header" data-theme="c">
     		<a href="#home" data-icon="home" data-iconpos="notext">Home</a>
-    		<h1>New Survey</h1>
+    		<h1>Customer Request Form</h1>
     		<a href="#qPanel" data-icon="gear" class="ui-btn-right">Options</a>
     	</div>
     	
@@ -177,11 +177,11 @@
 		    <ul data-role="listview" data-inset="true">
 		    	
 		        <li data-role="fieldcontain">
-		            <label for="guid">Generated Survey Id:</label>
+		            <label for="guid">Customer Id:</label>
 		            <h3 name="guid" id="guid">uhuhuh</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="name2">Survey Location:</label>
+		            <label for="name2">Customer Location:</label>
 		            <h3 id="geolocation">Finding geolocation...</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
@@ -192,72 +192,98 @@
 		            </select>
 		            <br>
 		            <label for="flipDomain">&nbsp;</label>
-		            <select name="flipDomain" id="flipDomain" data-role="slider">
+		            <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+					    <option>Choose domain</option>
+					    <option value="com">.COM (RM50)</option>
+					    <option value="net">.NET (RM50)</option>
+					    <option value="org">.ORG (RM50)</option>
+					    <option value="biz">.BIZ (RM50)</option>
+					    <option value="us">.US (RM50)</option>
+					    <option value="info">.INFO (RM50)</option>
+					    <option value="commy">.COM.MY (RM100)</option>
+					    <option value="netmy">.NET.MY (RM100)</option>
+					    <option value="orgmy">.ORG.MY (RM100)</option>
+					    <option value="my">.MY (RM120)</option>
+					</select>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="hosting">Hosting:</label>
+		            <select name="hosting" id="hosting" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
+		            <fieldset data-role="controlgroup">
+				        <legend></legend>
+				        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on">
+				        <label for="radio-choice-v-2a">Supreme</label>
+				      
+				        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+				        <label for="radio-choice-v-2b">Deluxe</label>
+				    </fieldset>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="pg1">Homepage Design:</label>
+		            <select name="pg1" id="pg1" data-role="slider">
 		                <option value="no">No</option>
 		                <option value="yes">Yes</option>
 		            </select>
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="name2">Hosting:</label>
-		            <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">Homepage Design:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">About Us Page Design:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">Contact Page Design:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">Product or Service Page Design:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">Blog or News Page Design:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="textarea2">E-Commerce System:</label>
-		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
-		        </li>
-		        <li data-role="fieldcontain">
-		            <label for="flip2">Flip switch:</label>
-		            <select name="flip2" id="flip2" data-role="slider">
-		                <option value="off">Off</option>
-		                <option value="on">On</option>
+		            <label for="pg2">About Us Page Design:</label>
+		            <select name="pg2" id="pg2" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
 		            </select>
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="slider2">Slider:</label>
-		            <input type="range" name="slider2" id="slider2" value="0" min="0" max="100" data-highlight="true">
+		            <label for="pg3">Contact Page Design:</label>
+		            <select name="pg3" id="pg3" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="select-choice-a" class="select">Custom select menu:</label>
-					<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
-					    <option>Custom menu example</option>
-					    <option value="standard">Standard: 7 day</option>
-					    <option value="rush">Rush: 3 days</option>
-					    <option value="express">Express: next day</option>
-					    <option value="overnight">Overnight</option>
-					</select>
+		            <label for="pg4">Product or Service Page Design:</label>
+		            <select name="pg4" id="pg4" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
 		        </li>
 		        <li data-role="fieldcontain">
-		        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
-		            <div class="ui-grid-a">
-					    <div class="ui-block-a"><button id="camera" onclick="capturePhoto();">Camera</button></div>
-					    <div class="ui-block-b"><button data-theme="d">Video</button></div>
-					</div>   
+		            <label for="pg5">Blog or News Page Design:</label>
+		            <select name="pg5" id="pg5" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="otherReq">Other Request:</label>
+		        <textarea cols="40" rows="8" name="otherReq" id="otherReq"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="pg6">E-Commerce System:</label>
+		            <select name="pg6" id="pg6" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="customerName">Customer Name:</label>
+		            <input type="text" name="customerName" id="customerName" value="" data-clear-btn="true">
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="customerOrg">Customer Organisation:</label>
+		            <input type="text" name="customerOrg" id="customerOrg" value="" data-clear-btn="true">
+		        </li>
+		        <li data-role="fieldcontain">
+			        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+			        <img style="display:none;" id="largeImage" src="" />
 			    </li>
 		        <li class="ui-body ui-body-b">
-		            <fieldset class="ui-grid-a">
-		                    <div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
-		                    <div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
+		            <fieldset class="ui-grid-b">
+		            	<div class="ui-block-a"><button id="camera" onclick="capturePhoto();">Camera</button></div>
+		                <div class="ui-block-b"><button type="submit" data-theme="d">Cancel</button></div>
+		                <div class="ui-block-c"><button type="submit" data-theme="a">Submit</button></div>
 		            </fieldset>
 		        </li>
 		    </ul>
