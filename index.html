@@ -122,6 +122,12 @@
 	        return v.toString(16);
 	    });
 	}
+	
+	function genUID() {
+		var guid = createGuid();
+		var valGuid = document.getElementById('guid');
+		valGuid.innerHTML = guid;
+	}
 
 
 	    
@@ -137,9 +143,9 @@
         </div><!-- /header -->
  
         <div data-role="content">
-            <a href="#newForm" data-transition="flip" data-role="button">New Form</a>
+            <a href="#newForm" onclick="genUID();" data-transition="flow" data-role="button">New Form</a>
             <a href="#" data-role="button">Statistic</a>
-            <a href="about.html" data-rel="dialog" data-role="button">About</a>
+            <a href="about.html" data-role="button" rel="external">About</a>
         </div><!-- /content -->
  
         <div data-role="footer" data-theme="c">
@@ -179,11 +185,44 @@
 		            <h3 id="geolocation">Finding geolocation...</h3>		        
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="name2">Text Input:</label>
+		            <label for="flipDomain">Domain Name:</label>
+		            <select name="flipDomain" id="flipDomain" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
+		            <br>
+		            <label for="flipDomain">&nbsp;</label>
+		            <select name="flipDomain" id="flipDomain" data-role="slider">
+		                <option value="no">No</option>
+		                <option value="yes">Yes</option>
+		            </select>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="name2">Hosting:</label>
 		            <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
 		        </li>
 		        <li data-role="fieldcontain">
-		            <label for="textarea2">Textarea:</label>
+		            <label for="textarea2">Homepage Design:</label>
+		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="textarea2">About Us Page Design:</label>
+		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="textarea2">Contact Page Design:</label>
+		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="textarea2">Product or Service Page Design:</label>
+		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="textarea2">Blog or News Page Design:</label>
+		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+		        </li>
+		        <li data-role="fieldcontain">
+		            <label for="textarea2">E-Commerce System:</label>
 		        <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
 		        </li>
 		        <li data-role="fieldcontain">
@@ -230,12 +269,6 @@
         </div><!-- /footer -->
     
     </div>
-    
-    <script type="text/javascript">
-    	var guid = createGuid();
-		var valGuid = document.getElementById('guid');
-		valGuid.innerHTML = guid;
-    </script>
-    
+        
 </body>
 </html>
